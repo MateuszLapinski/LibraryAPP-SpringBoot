@@ -1,10 +1,10 @@
-package com.example.LibraryAPP;
+package com.example.LibraryAPP.User;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="users")
+@Table(name="Users")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,7 +15,7 @@ public class User {
     private int id;
 
     @NonNull
-    private String username;
+    private String user_name;
     @NonNull
     private String password;
 

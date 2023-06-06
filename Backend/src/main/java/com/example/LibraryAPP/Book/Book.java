@@ -1,26 +1,30 @@
-package com.example.LibraryAPP;
+package com.example.LibraryAPP.Book;
 
+import com.example.LibraryAPP.User.User;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.relational.core.mapping.Column;
 
 @Entity
 @Table(name="books")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Book {
 
-    @Id
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
     private int id;
     @NonNull
+    @Column(name="title")
     private String title;
     @NonNull
+    @Column(name="author")
     private String author;
 
     @NonNull
+    @Column(name="isREAD")
+    private String isREAD;
+    @ManyToOne
     private User user;
 }
