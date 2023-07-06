@@ -1,18 +1,13 @@
-import './App.css';
-import Registration from './Registration';
-import {Component} from "react";
-
-class App extends Component {
-     render(){ return(
-         <>
-         <div class="App">
-
-         <Registration/>
-         </div>
-         </>
-         )
+import React from 'react';
+import {BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom';
+import HomePage from './Homepage/Homepage';
+import About from './About/About';
 
 
-     }
+const App = () => {
+    return (
+        <HomePage></HomePage>
+    );
 }
+
 export default App;

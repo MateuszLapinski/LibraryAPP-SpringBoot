@@ -1,0 +1,18 @@
+.logo {
+    float:left;
+    width:40%;
+    min-height: 100vh;
+}
+
+.logo img{
+    position:absolute;
+    max-width: 210px;
+    max-height:320px;
+    top:20%;
+    left:10%;
+}
+.Homepage{
+    float:left;
+    width:60%;
+    min-height: 100vh;
+}

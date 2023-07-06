@@ -1,0 +1,16 @@
+<Router>
+            <Link to='/home'>Home</Link>
+            <Link to='/about'>About</Link>
+
+            <Routes>
+                <Route path='/home' element={<HomePage/>} />
+                <Route path='/about' element={<About/>} />
+            </Routes>
+        </Router>
+
+
+        <button onClick={this.handleRegistrationButtonClick}>Rejestracja</button>
+                            <button onClick={this.handleSigninButtonClick}>Logowanie</button>
+
+                            {showRegistration && <Registration />}
+                            {showSignin && <Signin />}

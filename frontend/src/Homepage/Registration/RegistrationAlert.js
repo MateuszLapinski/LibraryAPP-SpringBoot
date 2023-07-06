@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Alert } from "react-bootstrap";
-import './RegistrationAlert.css'
+import { Alert } from 'react-bootstrap';
+import './RegistrationAlert.css';
+
 class RegistrationAlert extends Component{
     constructor(props) {
         super(props);
@@ -25,7 +26,7 @@ class RegistrationAlert extends Component{
     }
     setVisible=(isVisible) => {
         // eslint-disable-next-line no-undef
-        this.setState({visible: visible});
+        this.setState({visible:isVisible});
     }
 
     render(){
@@ -33,7 +34,7 @@ class RegistrationAlert extends Component{
             return(
                 <>
                     <div className="RegistrationAlert">
-                        <Alert variant={this.state.variant} onClose={() =>this.setState ({visible:false})} dismisissable>
+                        <Alert variant={this.state.variant} onClose={() =>this.setState ({visible:false})} dismissible>
                             <Alert.Heading>{this.state.heading}</Alert.Heading>
                             <p>
                                 {this.state.message}
@@ -47,4 +48,4 @@ class RegistrationAlert extends Component{
 
 
 }
-export default RegistrationAlert
+export default RegistrationAlert;
