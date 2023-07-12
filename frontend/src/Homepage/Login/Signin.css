@@ -5,6 +5,7 @@
     background-color: white;
     width:300px;
     padding:50px;
+    padding-bottom:30px;
     margin-left: auto;
     margin-right: auto;
     margin-top:100px;
@@ -67,4 +68,5 @@ Button:focus {
     -moz-box-shadow: 0px 0px 15px 0px rgba(171, 78, 78, 0.65);
     box-shadow: 0px 0px 15px 0px rgba(171, 78, 78, 0.65);
 }
+
 
