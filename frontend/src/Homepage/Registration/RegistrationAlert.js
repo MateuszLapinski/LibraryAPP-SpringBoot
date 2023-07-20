@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Alert } from 'react-bootstrap';
+import Alert from 'react-bootstrap/Alert';
 import './RegistrationAlert.css';
 
 class RegistrationAlert extends Component{
@@ -7,13 +7,13 @@ class RegistrationAlert extends Component{
         super(props);
 
         this.state= {
-            visible:this.props.visible,
-            variant:this.props.variant,
-            heading:this.props.heading,
-            message:this.props.message
-
-        }
+            visible: false,
+            variant: 'filled',
+            heading:'',
+            message:'',
+        };
     }
+
     setMessege=(message) => {
         this.setState({message:message});
     }
@@ -25,7 +25,6 @@ class RegistrationAlert extends Component{
         this.setState({variant:variant});
     }
     setVisible=(isVisible) => {
-        // eslint-disable-next-line no-undef
         this.setState({visible:isVisible});
     }
 
@@ -34,12 +33,13 @@ class RegistrationAlert extends Component{
             return(
                 <>
                     <div className="RegistrationAlert">
-                        <Alert variant={this.state.variant} onClose={() =>this.setState ({visible:false})} dismissible>
+                        <Alert severity="alert-danger" onClose={() => this.setState({ visible: false })} dismissible>
                             <Alert.Heading>{this.state.heading}</Alert.Heading>
                             <p>
                                 {this.state.message}
                             </p>
                         </Alert>
+
                     </div>
                 </>
             );

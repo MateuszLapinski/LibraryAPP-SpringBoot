@@ -1,7 +1,7 @@
 :focus-visible{
     outline:none;
 }
-.Register {
+.NextStep {
     background-color: white;
     width:300px;
     padding:50px;
@@ -16,48 +16,13 @@
 
 
 }
-.RegisterError {
-    margin-left:auto;
-    margin-right:auto;
-}
-.RegisterError span {
-    display:block;
-    width:80%;
-    margin-left:auto;
-    margin-right:auto;
-    color:#a32f2f;
-}
 
-.UsernameError {
-    margin-left:auto;
-    margin-right:auto;
-}
-.UsernameError span {
-    display:block;
-    width:100%;
-    margin-left:auto;
-    margin-right:auto;
-    color:#a32f2f;
-}
-
-.PasswordError {
-    margin-left:auto;
-    margin-right:auto;
-}
-.PasswordError span {
-    display:block;
-    width:100%;
-    margin-left:auto;
-    margin-right:auto;
-    color:#a32f2f;
-}
-.Register Form{
+.NextStep Form{
     margin: 0 auto;
     width:320px;
-
-
 }
-.Register Form input {
+
+.NextStep Form input{
     width:300px;
     background-color: #efefef;
     color: #666;
@@ -70,7 +35,7 @@
     margin-top:20px;
 }
 
-.Register Form input:focus {
+.NextStep Form input:focus {
     -webkit-box-shadow: 0px 0px 10px 0px rgb(171, 78, 78);
     -moz-box-shadow: 0px 0px 10px 0px rgb(171, 78, 78);
     box-shadow: 0px 0px 10px 0px rgb(171, 78, 78);
@@ -79,7 +44,8 @@
     color: #a32f2f;
 }
 
-.Register Button {
+
+.NextStep Button {
     width: 300px;
     background-color: #a32f2f;
     font-size: 20px;
@@ -93,14 +59,12 @@
     outline:none;
     margin-top:20px;
 }
-Button:hover{
+.NextStep Button:hover{
     background-color: #bd3d3d;
 }
 
-Button:focus {
+.NextStep Button:focus {
     -webkit-box-shadow: 0px 0px 15px 0px rgba(171, 78, 78, 0.65);
     -moz-box-shadow: 0px 0px 15px 0px rgba(171, 78, 78, 0.65);
     box-shadow: 0px 0px 15px 0px rgba(171, 78, 78, 0.65);
 }
-
-

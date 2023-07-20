@@ -1,13 +1,15 @@
 import React,{ Component } from 'react';
 import Registration from "../Registration/Registration";
 import {Button, Form} from "react-bootstrap";
+import ForgottenPassword from "./ForgottenPassword";
 import './Signin.css'
 
 class Signin extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            showRegistration: false
+            showRegistration: false,
+            showForgotten:false
         };
     }
     handleLogin = () => {
@@ -22,12 +24,20 @@ class Signin extends Component {
         this.setState({ showRegistration: false });
     };
 
+    handleForgotten = () => {
+        this.setState({showForgotten:true});
+    }
+
     render() {
         if (this.state.showRegistration) {
             return (
                    <Registration handleBackToLogin={this.handleBackToLogin}/>
 
         );
+        }else if (this.state.showForgotten){
+            return(
+                <ForgottenPassword></ForgottenPassword>
+            )
         }
         return(
         <div className="Signin">
@@ -42,12 +52,13 @@ class Signin extends Component {
                     <Form.Control type="password" name="Password" placeholder="Password"/>
                 </Form.Group>
 
-                <Button block="true" size="lg" type="submit" onClick={this.handleLogin}>Login</Button>
-                <Button block="true" size="lg" type="submit" onClick={this.handleRegistration}>Załóż konto</Button>
+                <Button block="true" size="lg" type="submit" onClick={this.handleLogin}>Sign in</Button>
+                <Button block="true" size="lg" type="submit" onClick={this.handleRegistration}>Create an account
+                </Button>
 
             </Form>
-            <div className="BackToLogin">
-                Nie pamiętasz hasła?
+            <div className="BackToLogin" onClick={this.handleForgotten}>
+                Forgot Password?
             </div>
 
 
