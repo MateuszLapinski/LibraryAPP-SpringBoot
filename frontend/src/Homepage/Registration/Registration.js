@@ -48,8 +48,11 @@ class Registration extends Component{
             this.setState({showPasswordError:false})
         }
 
+        if((this.state.showUsernameError===true) || (this.state.showPasswordError===true)) {
+            this.setState({showUsername: false});
+        this.setState({showUsernameError: false})
+        }
         this.registerUser(username, password);
-
     }
     showRegistrationAlert(variant, heading, message){
         this.registrationAlert.current.setVariant(variant);
@@ -127,7 +130,7 @@ class Registration extends Component{
                             )}
                             {this.state.showRegisterSuccess && (
                                 <div className="PasswordError">
-                                    <span>Rejestracja przebiegła pomyślnie, Zostaniesz przeniesiony do ekranu logowania za {this.state.counter}</span>
+                                    <span>Registration was successful, You will be taken to the login screen in {this.state.counter} second</span>
                                 </div>
                             )}
 

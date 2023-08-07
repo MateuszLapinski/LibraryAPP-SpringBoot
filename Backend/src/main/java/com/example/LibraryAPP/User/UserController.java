@@ -17,19 +17,32 @@ public class UserController {
     @Autowired
     ObjectMapper objectMapper;
 
-
+    @CrossOrigin(origins = {"http://localhost:3000"})
     @GetMapping("/user/{id}")
     public User getById(@PathVariable("id") long id) {
         return userRepository.getById(id);
     }
 
+    @CrossOrigin(origins = {"http://localhost:3000/"})
+    @GetMapping("/searchuser/{username}")
+    public ResponseEntity searchUser(@PathVariable String username) {
+        List<User> userFromDb = userRepository.findByUsername(username);
+
+        if (!userFromDb.isEmpty()) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
+        }
+    }
+
+    @CrossOrigin(origins = {"http://localhost:3000"})
     @GetMapping("/users")
     public ResponseEntity getAllUser() throws JsonProcessingException {
         List<User> users = userRepository.findAll();
         return ResponseEntity.ok(objectMapper.writeValueAsString(users));
     }
 
-
+    @CrossOrigin(origins = {"http://localhost:3000"})
     @PostMapping("/signup")
     public ResponseEntity signUp(@RequestBody User user) {
         List<User> userFromDb = userRepository.findByUsername(user.getUsername());
@@ -41,8 +54,27 @@ public class UserController {
             return ResponseEntity.ok().build();
         }
     }
-}
 
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @PatchMapping("/changepassword")
+    public ResponseEntity<String> changePassword(@RequestBody User updatedUser) {
+        List<User> userFromDB = userRepository.findByUsername(updatedUser.getUsername());
+
+        if (!userFromDB.isEmpty()) {
+            User user = userFromDB.get(0);
+
+            if (!user.getPassword().equals(updatedUser.getPassword())) {
+                user.setPassword(updatedUser.getPassword());
+                userRepository.save(user);
+                return ResponseEntity.ok("Password changed successfully");
+            } else {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("New password must be different from the old password");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+    }
+}
 //
 //    @PostMapping("/signin")
 //    ResponseEntity<String> LoginUser(@Valid @RequestBody User logingUser) {
@@ -60,19 +92,8 @@ public class UserController {
 //    }
 //
 //
-//    @PatchMapping("/{id}")
-//    public int userUpdate(@PathVariable("id") int id, @RequestBody User updatedUser) {
-//        User user = userRepository.getById(id);
-//
-//        if (user != null) {
-//            if(updatedUser.getUser_name() != null) user.setUser_name(updatedUser.getUser_name());
-//            if(updatedUser.getPassword() != null) user.setPassword(updatedUser.getPassword());
-//            userRepository.update(user);
-//            return 1;
-//
-//        } else return 1;
-//    }
-//
+
+
 //    @DeleteMapping("/deleteUser/{id}")
 //    public int update(@PathVariable("id") int id){
 //        return userRepository.delete(id);

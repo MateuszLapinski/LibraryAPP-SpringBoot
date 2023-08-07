@@ -1,7 +1,11 @@
 import React from 'react';
-import {BrowserRouter as Router, Route, Link, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link, Routes, BrowserRouter} from 'react-router-dom';
 import HomePage from './Homepage/Homepage';
 import About from './About/About';
+import Signin from "./Homepage/Login/Signin";
+import NextStep from "./Homepage/Login/NextStep";
+import * as PropTypes from "prop-types";
+
 
 
 const App = () => {

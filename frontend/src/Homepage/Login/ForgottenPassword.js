@@ -41,7 +41,7 @@ class ForgottenPassword extends Component {
 render() {
         if(this.state.showNextStep) {
             return (
-                <NextStep></NextStep>
+                <NextStep username={this.usernameRef.current.value} />
             )
         } return(
         <div className="ForgottenPassword">
@@ -55,6 +55,8 @@ render() {
                         User not found, please try again
                     </div>
                 )}
+
+
                 <Button block="true" size="lg" type="submit" onClick={this.handleNext}>Next</Button>
 
             </Form>

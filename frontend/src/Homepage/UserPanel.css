@@ -1,0 +1,13 @@
+.Overlay {
+    width:80%;
+    background-color: white;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:5%;
+    margin-bottom:5%;
+    z-index: 99999;
+    height:80vh;
+}
+.logo {
+
+}

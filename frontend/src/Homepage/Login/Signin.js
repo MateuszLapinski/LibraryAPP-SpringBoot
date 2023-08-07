@@ -3,17 +3,19 @@ import Registration from "../Registration/Registration";
 import {Button, Form} from "react-bootstrap";
 import ForgottenPassword from "./ForgottenPassword";
 import './Signin.css'
+import UserPanel from "../UserPanel";
 
 class Signin extends Component {
     constructor(props) {
         super(props);
         this.state = {
             showRegistration: false,
-            showForgotten:false
+            showForgotten:false,
+            showUserPanel:false
         };
     }
     handleLogin = () => {
-        // Logika obsługi logowania
+        this.setState({showUserPanel:true})
     };
 
     handleRegistration = () => {
@@ -29,6 +31,12 @@ class Signin extends Component {
     }
 
     render() {
+        if (this.state.showUserPanel) {
+            return (
+                <UserPanel handleBackToLogin={this.handleBackToLogin}/>
+
+            );
+        }
         if (this.state.showRegistration) {
             return (
                    <Registration handleBackToLogin={this.handleBackToLogin}/>
@@ -36,7 +44,7 @@ class Signin extends Component {
         );
         }else if (this.state.showForgotten){
             return(
-                <ForgottenPassword></ForgottenPassword>
+                <ForgottenPassword handleBackToLogin={this.handleBackToLogin}/>
             )
         }
         return(
