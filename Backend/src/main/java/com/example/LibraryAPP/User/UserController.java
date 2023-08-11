@@ -74,22 +74,32 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
     }
+
+    //
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @PostMapping("/signin")
+    public ResponseEntity<String> signIn(@RequestBody User loginUser) {
+        String username = loginUser.getUsername();
+        String password = loginUser.getPassword();
+
+        List<User> listUserDB = userRepository.findByUsername(username);
+
+        if (listUserDB.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
+        }
+
+        User userfromDB = listUserDB.get(0);
+        if (userfromDB.getPassword().equals(password)) {
+            return ResponseEntity.ok("Password is Correct, You are Logged");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect password");
+        }
+    }
 }
-//
-//    @PostMapping("/signin")
-//    ResponseEntity<String> LoginUser(@Valid @RequestBody User logingUser) {
-//        User user= userRepository.getByUserName(logingUser.getUser_name());
-//        System.out.println(user.getUser_name() + user.getPassword());
-//        System.out.println(logingUser.getUser_name() + logingUser.getPassword());
-//        if (logingUser.getPassword().equals(user.getPassword()))
-//        {
-//            return ResponseEntity.ok("Password is Correct, You are Logged");
-//        }
-//        else {
-//            return ResponseEntity.ok("Password is incorrect");
-//        }
-//
-//    }
+
+
+
+
 //
 //
 

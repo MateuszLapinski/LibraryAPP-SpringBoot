@@ -1,22 +1,38 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    max-width: 1920px;
+    margin: 0 auto;
+}
+
+
 .logo {
     float:left;
-    width:40%;
+    max-width:40%;
     min-height: 100vh;
+    width:768px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
-.logo img{
-    position:absolute;
+.logo img {
     width: 210px;
-    height:320px;
-    top:20%;
-    left:10%;
+    height: 320px;
     transition: width 3s, height 3s, left 3s, top 3s;
+    margin-left: auto;
+    margin-right: auto;
 
 
 }
+
 .Homepage{
     float:left;
-    width:60%;
-    min-height: 100vh;
+    width:1152px;
+    max-width: 60%;
+    max-height: 100vh;
+
 }

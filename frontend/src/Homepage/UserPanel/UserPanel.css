@@ -54,8 +54,8 @@
 .tiles{
     width:40%;
     height:30%;
-    border-radius:10px;
-    background-color: #c9a5ff;
+    border-radius:3px;
+    background-color: #bb80ff;
     margin-left:30px;
     margin:10px;
     float:left;
@@ -65,7 +65,7 @@
 }
 
 .tiles:hover{
-    background-color: #ffc595;
+    background-color: #ffaa71;
     cursor:pointer;
 }
 

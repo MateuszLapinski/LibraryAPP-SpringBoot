@@ -25,6 +25,6 @@ public class Book {
     @NonNull
     @Column(name="isREAD")
     private String isREAD;
-    @ManyToOne
-    private User user;
+//    @ManyToOne
+//    private User user;
 }

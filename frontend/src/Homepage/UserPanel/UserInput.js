@@ -1,20 +1,28 @@
 import React,{ Component } from 'react';
 import './UserInput.css'
+import Tile1AddBook from "./Tile1AddBook";
+import Tile2ReviewBooks from "./Tile2ReviewBooks";
 
 class UserInput extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showAllBooks: false
+        };
+    }
+
+    handleShowAllBooks = () => {
+        this.setState({ showAllBooks: true });
+    };
     render() {
         return (
             <>
                 <div id="userInput">
                     {this.props.showAddingBook && (
-                        <div id="addingBook">
-                            <span> test1 </span>
-                        </div>
+                        <Tile1AddBook/>
                     )}
                     {this.props.showReviewBook && (
-                        <div id="reviewBook">
-                            <span> test2 </span>
-                        </div>
+                        <Tile2ReviewBooks />
                     )}
                     {this.props.showSearchBook && (
                         <div id="searchBook">

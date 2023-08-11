@@ -1,0 +1,45 @@
+.addingBook input {
+    width:300px;
+    background-color: #efefef;
+    color: #666;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 20px;
+    padding:10px;
+    box-sizing: border-box;
+    outline: none;
+    margin-top:20px;
+}
+
+.addingBook input:focus {
+    -webkit-box-shadow: 0px 0px 10px 0px rgb(217, 153, 113);
+    -moz-box-shadow: 0px 0px 10px 0px rgb(217, 153, 113);
+    box-shadow: 0px 0px 10px 0px rgb(255, 170, 113);
+    border: 2px solid #d99971;
+    background-color: #f3e5e5;
+    color: #ffaa71;
+}
+
+.addingBook Button {
+    width: 300px;
+    background-color: #ffaa71;
+    font-size: 20px;
+    color:white;
+    padding: 15px 10px;
+    margin-top:10px;
+    border:none;
+    border-radius:5px;
+    cursor:pointer;
+    letter-spacing: 2px;
+    outline:none;
+    margin-top:20px;
+}
+Button:hover{
+    background-color: #f3863c;
+}
+
+Button:focus {
+    -webkit-box-shadow: 0px 0px 15px 0px rgb(217, 153, 113);
+    -moz-box-shadow: 0px 0px 15px 0px rgb(217, 153, 113);
+    box-shadow: 0px 0px 15px 0px rgb(217, 153, 113);
+}

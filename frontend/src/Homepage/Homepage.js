@@ -11,14 +11,15 @@ class Homepage extends Component {
 
     render(){
             return (
-                <>
-                <div className="logo">
-                    <img src={owllogo} alt="Logo"/>
+                <div className="container">
+                    <div className="logo">
+                                <img src={owllogo} alt="Logo"/>
+                        </div>
+                    <div className="Homepage">
+                        <Signin></Signin>
+                    </div>
                 </div>
-                <div className="Homepage">
-                    <Signin></Signin>
-                </div>
-                </>
+
             );
         }
 }

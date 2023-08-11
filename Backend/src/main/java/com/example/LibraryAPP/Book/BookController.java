@@ -19,6 +19,7 @@ public class BookController {
     @Autowired
     ObjectMapper objectMapper;
     public static final Logger logger= Logger.getLogger(BookController.class.getName());
+    @CrossOrigin(origins = {"http://localhost:3000"})
     @GetMapping("/allbooks")
     public ResponseEntity getBooks() throws JsonProcessingException {
            List <Book> books= bookRepository.findAll();
@@ -31,6 +32,7 @@ public class BookController {
         return ResponseEntity.ok(objectMapper.writeValueAsString(books));
     }
 
+    @CrossOrigin(origins = {"http://localhost:3000"})
     @PostMapping("/addbooks")
     public ResponseEntity addBook(@RequestBody Book book){
         Optional<Book> bookFromDB= bookRepository.findByTitle(book.getTitle());
