@@ -105,7 +105,7 @@ class Signin extends Component {
             <Form onSubmit={this.handleLogin}>
                 <Form.Group controlId='username' size="lg">
                     <Form.Label></Form.Label>
-                    <Form.Control autoFocus name="username" placeholder="UserName" ref={this.usernameRef}/>
+                    <Form.Control className="HolyInput" name="username" placeholder="UserName" ref={this.usernameRef}/>
                     {this.state.showUserError && (
                         <div className="PasswordError">
                             <span>User not found</span>
@@ -116,7 +116,7 @@ class Signin extends Component {
 
                 <Form.Group controlId='password' size="lg">
                     <Form.Label></Form.Label>
-                    <Form.Control type="password" name="Password" placeholder="Password" ref={this.passwordRef}/>
+                    <Form.Control className="HolyInput" type="password" name="Password" placeholder="Password" ref={this.passwordRef}/>
                     {this.state.showPasswordError && (
                         <div className="PasswordError">
                             <span>Wrong Password</span>

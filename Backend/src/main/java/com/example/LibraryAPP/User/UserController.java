@@ -19,8 +19,10 @@ public class UserController {
 
     @CrossOrigin(origins = {"http://localhost:3000"})
     @GetMapping("/user/{id}")
-    public User getById(@PathVariable("id") long id) {
-        return userRepository.getById(id);
+    public int getIdByUsername(@PathVariable("id") String username) {
+        List<User> userFromDb = userRepository.findByUsername(username);
+
+        return userFromDb.get(0).getId();
     }
 
     @CrossOrigin(origins = {"http://localhost:3000/"})

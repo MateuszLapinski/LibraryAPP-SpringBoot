@@ -15,6 +15,7 @@ class Tile1AddBook extends Component {
 
     handleSubmit= event => {
         event.preventDefault();
+        const username= this.props.username;
         const title = this.titleRef.current.value;
         const author = this.authorRef.current.value;
         const read= this.isReadRef.current.value;
@@ -23,7 +24,7 @@ class Tile1AddBook extends Component {
             this.setState({ showIncompleteError : true });
             return;
         }else {
-           this.addBook(title,author,read);
+           this.addBook(title,author,read, username);
             this.titleRef.current.value = '';
             this.authorRef.current.value = '';
             this.isReadRef.current.value = '';
@@ -35,30 +36,27 @@ class Tile1AddBook extends Component {
         }
     }
 
-    addBook(title, author,isREAD) {
-        fetch('http://localhost:8080/addbooks', {
-            method: 'Post',
+    addBook(title, author, read, username) {
+        fetch(`http://localhost:8080/addbooks/${username}`, {
+            method: 'POST',
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 title: title,
                 author: author,
-                isREAD: isREAD
+                isREAD: read
             })
         }).then(function (response) {
-            if (response.status === 422) {
-                console.log("Coś poszło nie tak");
-            } else if (response.status === 200) {
-                console.log("Dodano książkę");
-            }else{
-                console.log("Coś poszło nie tak");}
-        }.bind(this)).catch(function(error){
-            console.log("Coś poszło nie tak");
-        }.bind(this));
+            if (response.ok) {
+                console.log('Książka została dodana');
+            } else {
+                console.log('Wystąpił błąd podczas dodawania książki');
+            }
+        }).catch(function (error) {
+            console.log('Wystąpił błąd podczas dodawania książki:', error);
+        });
     }
-
     render(){
         return(
             <>
@@ -66,17 +64,17 @@ class Tile1AddBook extends Component {
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Group controlId='BookTitle' size="lg">
                             <Form.Label></Form.Label>
-                            <Form.Control autoFocus name="BookTitle" placeholder="Book Title" ref={this.titleRef}/>
+                            <Form.Control className="HolyInput" autoFocus name="BookTitle" placeholder="Book Title" ref={this.titleRef}/>
                         </Form.Group>
 
                         <Form.Group controlId='Author' size="lg">
                             <Form.Label></Form.Label>
-                            <Form.Control name="Author" placeholder="Author" ref={this.authorRef}/>
+                            <Form.Control className="HolyInput" name="Author" placeholder="Author" ref={this.authorRef}/>
                         </Form.Group>
 
                         <Form.Group controlId='read' size="lg">
                             <Form.Label></Form.Label>
-                            <Form.Control name="Read" placeholder="Has it been read?" ref={this.isReadRef}/>
+                            <Form.Control className="HolyInput" name="Read" placeholder="Has it been read?" ref={this.isReadRef}/>
                         </Form.Group>
                         {this.state.showIncompleteError && (
                             <div className="PasswordError">

@@ -181,7 +181,7 @@ class UserPanel extends Component {
                         </div>
                         <UserInput showAddingBook={this.state.showAddingBook} showReviewBook={this.state.showReviewBook}
                                    showSearchBook={this.state.showSearchBook}
-                                   showAIBook={this.state.showAIBook} showUserData={this.state.showUserData} showLogOut={this.state.showLogOut}/>
+                                   showAIBook={this.state.showAIBook} showUserData={this.state.showUserData} showLogOut={this.state.showLogOut} username={username}/>
                     </div>
                 </>
             );

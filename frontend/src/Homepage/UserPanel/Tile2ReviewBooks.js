@@ -9,13 +9,14 @@ class Tile2ReviewBooks extends Component {
             booksData:[]
         }
     }
+
     componentDidMount() {
-        this.displayBooks();
+        this.displayBooks(this.props.username)
     }
 
 
-    displayBooks() {
-        fetch('http://localhost:8080/allbooks', {
+    displayBooks(username) {
+        fetch(`http://localhost:8080/yourbooks/${username}`, {
             method: 'GET',
         }).then(function (response) {
             if (response.status === 200) {

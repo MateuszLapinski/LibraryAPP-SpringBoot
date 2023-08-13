@@ -2,6 +2,8 @@ import React,{ Component } from 'react';
 import './UserInput.css'
 import Tile1AddBook from "./Tile1AddBook";
 import Tile2ReviewBooks from "./Tile2ReviewBooks";
+import Tile3FilterBooks from "./Tile3FilterBooks";
+import Tile4ChangeUserDetails from "./Tile4ChangeUserDetails";
 
 class UserInput extends Component {
     constructor(props) {
@@ -19,15 +21,13 @@ class UserInput extends Component {
             <>
                 <div id="userInput">
                     {this.props.showAddingBook && (
-                        <Tile1AddBook/>
+                        <Tile1AddBook username={this.props.username}/>
                     )}
                     {this.props.showReviewBook && (
-                        <Tile2ReviewBooks />
+                        <Tile2ReviewBooks username={this.props.username}/>
                     )}
                     {this.props.showSearchBook && (
-                        <div id="searchBook">
-                            <span> test3 </span>
-                        </div>
+                       <Tile3FilterBooks/>
                     )}
                     {this.props.showAIBook && (
                         <div id="AIBook">
@@ -35,9 +35,7 @@ class UserInput extends Component {
                         </div>
                     )}
                     {this.props.showUserData && (
-                        <div id="UserDataChange">
-                            <span> test5 </span>
-                        </div>
+                        <Tile4ChangeUserDetails/>
                     )}
                     {this.props.showLogOut && (
                         <div id="LogOutInformation">

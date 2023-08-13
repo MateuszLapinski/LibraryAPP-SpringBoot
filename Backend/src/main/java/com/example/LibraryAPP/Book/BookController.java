@@ -1,7 +1,10 @@
 package com.example.LibraryAPP.Book;
 
+import com.example.LibraryAPP.User.User;
+import com.example.LibraryAPP.User.UserRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +20,8 @@ public class BookController {
     @Autowired
     BookRepository bookRepository;
     @Autowired
+    UserRepository userRepository;
+    @Autowired
     ObjectMapper objectMapper;
     public static final Logger logger= Logger.getLogger(BookController.class.getName());
     @CrossOrigin(origins = {"http://localhost:3000"})
@@ -26,24 +31,43 @@ public class BookController {
         return ResponseEntity.ok(objectMapper.writeValueAsString(books));
     }
 
-    @GetMapping("/yourbooks/{user_id}")
-    public ResponseEntity getAllBooks(@PathVariable("user_id") int user_id) throws JsonProcessingException {
-        List<Book> books= bookRepository.findByUserId(user_id);
+
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @GetMapping("/yourbooks/{username}")
+    public ResponseEntity getAllBooks(@PathVariable("username") String username) throws JsonProcessingException {
+        List<Book> books= bookRepository.findByUserUsername(username);
         return ResponseEntity.ok(objectMapper.writeValueAsString(books));
     }
 
     @CrossOrigin(origins = {"http://localhost:3000"})
-    @PostMapping("/addbooks")
-    public ResponseEntity addBook(@RequestBody Book book){
+    @GetMapping("/filterbooks/{userInput}")
+    public ResponseEntity filterBooks(@PathVariable("userInput") String userInput) throws JsonProcessingException{
+        List<Book> books=bookRepository.filterBooks(userInput);
+        ObjectMapper mapper = new ObjectMapper();
+        SimpleModule module = new SimpleModule();
+        module.addSerializer(Book.class, new BookSerializer());
+        mapper.registerModule(module);
+
+        return ResponseEntity.ok(mapper.writeValueAsString(books));
+    }
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @PostMapping("/addbooks/{username}")
+    public ResponseEntity addBook(@RequestBody Book book, @PathVariable("username") String username) throws JsonProcessingException{
+        List<User> user= userRepository.findByUsername(username);
         Optional<Book> bookFromDB= bookRepository.findByTitle(book.getTitle());
-        if(bookFromDB.isPresent()){
-            return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
-        }
-        Book savedBook = bookRepository.save(book);
-        return ResponseEntity.ok(savedBook);
+        if(!user.isEmpty()){
+            if(!bookFromDB.isPresent()){
+                book.setUser(user.get(0));
+                Book savedBook = bookRepository.save(book);
+                return ResponseEntity.ok().build();
+            }else {
+                return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
+            }
+        }else
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 
-    //DODANIE KODÓW BŁĘDÓW
+
     @PutMapping("/updatebook/{id}")
     public int update(@PathVariable("id") long id, @RequestBody Book updatedBook) {
         Book book = bookRepository.getById(id);
