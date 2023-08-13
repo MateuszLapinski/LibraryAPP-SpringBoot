@@ -110,7 +110,7 @@ class UserPanel extends Component {
         if (logoIMG) {
             logoIMG.style.width = "42px";
             logoIMG.style.height = "64px";
-            logoIMG.style.top = "12%";
+            logoIMG.style.top = "5%";
             logoIMG.style.left = "50%";
             logoIMG.style.position="absolute";
 
