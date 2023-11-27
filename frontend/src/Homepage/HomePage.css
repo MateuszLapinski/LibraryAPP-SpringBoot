@@ -1,38 +1,24 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    max-width: 1920px;
-    margin: 0 auto;
+.Container {
+        margin-left: auto;
+        margin-right: auto;
+        margin-top:5%;
+        height:70vh;
+        background-color: white;
+        border-radius: 10px;
+        width:1366px;
+        height:700px;
+        display: block;
 }
 
-
-.logo {
-    float:left;
-    max-width:40%;
-    min-height: 100vh;
-    width:768px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.innerContainer {
+        float:left;
+        padding:5px;
+        width: 673px;
+        height:690px;
 }
-
-
-.logo img {
-    width: 210px;
-    height: 320px;
-    transition: width 3s, height 3s, left 3s, top 3s;
-    margin-left: auto;
-    margin-right: auto;
-
-
+.leftside{
+        background-color: black;
+        height:100%;
 }
-
-.Homepage{
-    float:left;
-    width:1152px;
-    max-width: 60%;
-    max-height: 100vh;
-
+.leftside img {
 }

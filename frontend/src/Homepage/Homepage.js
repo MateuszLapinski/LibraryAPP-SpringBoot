@@ -1,25 +1,26 @@
 import {Component} from "react";
-import Registration from "./Registration/Registration";
 import Signin from "./Login/Signin";
 import "./Login/Signin.css"
-import About from "../About/About";
 import "./HomePage.css"
-import owllogo from "./owllogo.png"
 
 
 class Homepage extends Component {
 
     render(){
             return (
-                <div className="container">
-                    <div className="logo">
-                                <img src={owllogo} alt="Logo"/>
+                <div>
+                    <div>Your Library APP</div>
+                <div className="Container">
+                    <div className="innerContainer">
+                        <div className="leftside">
+                            <img src="vectorlibrary.webp"/>
                         </div>
-                    <div className="Homepage">
+                    </div>
+                    <div className="innerContainer">
                         <Signin></Signin>
                     </div>
                 </div>
-
+                </div>
             );
         }
 }
