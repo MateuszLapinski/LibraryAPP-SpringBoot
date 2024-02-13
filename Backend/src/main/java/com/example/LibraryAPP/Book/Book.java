@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import java.io.IOException;
 
 @Entity
-@Table(name = "books")
+@Table(name = "book")
 @Data
 @NoArgsConstructor
 public class Book {
@@ -32,9 +32,5 @@ public class Book {
     @NonNull
     @Column(name = "isREAD")
     private String isREAD;
-
-    @ManyToOne
-    @JoinColumn(name = "userID")
-    private User user;
 }
 

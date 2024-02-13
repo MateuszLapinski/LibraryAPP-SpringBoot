@@ -22,6 +22,8 @@ public class BookController {
     @Autowired
     UserRepository userRepository;
     @Autowired
+    UserToBookRepository userToBookRepository;
+    @Autowired
     ObjectMapper objectMapper;
     public static final Logger logger= Logger.getLogger(BookController.class.getName());
     @CrossOrigin(origins = {"http://localhost:3000"})
@@ -50,7 +52,7 @@ public class BookController {
 
         return ResponseEntity.ok(mapper.writeValueAsString(books));
     }
-    @CrossOrigin(origins = {"http://localhost:3000"})
+    /*@CrossOrigin(origins = {"http://localhost:3000"})
     @PostMapping("/addbooks/{username}")
     public ResponseEntity addBook(@RequestBody Book book, @PathVariable("username") String username) throws JsonProcessingException{
         List<User> user= userRepository.findByUsername(username);
@@ -65,6 +67,28 @@ public class BookController {
             }
         }else
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+    }*/
+
+    @CrossOrigin(origins = {"http://localhost:3000"})
+    @PostMapping("/addbooks/{username}")
+    public ResponseEntity addBook(@RequestBody Book book, @PathVariable("username") String username) throws JsonProcessingException {
+        List<User> user = userRepository.findByUsername(username);
+        if (!user.isEmpty()) {
+            User currentUser = user.get(0);
+            Optional<Book> bookFromDB = bookRepository.findByTitle(book.getTitle());
+            if (!bookFromDB.isPresent()) {
+
+                Book savedBook = bookRepository.save(book);
+
+                UserToBook userToBook = new UserToBook(currentUser, savedBook);
+                userToBookRepository.save(userToBook);
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).build();
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
     }
 
 
